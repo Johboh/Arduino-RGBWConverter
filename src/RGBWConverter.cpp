@@ -3,8 +3,8 @@
   Created by Mehmet Bertan Tarakçıoğlu, November 8, 2021.
   Copyright (c) 2021 Mehmet Bertan Tarakçıoğlu. Licensed under the MIT License.
 */
-#include "Arduino.h"
 #include "RGBWConverter.h"
+#include  <cmath>
 
 // Constructor
 RGBWConverter::RGBWConverter(uint8_t wTempRed = 255, uint8_t wTempGreen = 255, uint8_t wTempBlue = 255, bool blueCorrectionEnabled = false)
@@ -26,7 +26,7 @@ RGBWConverter::RGBW RGBWConverter::RGBToRGBW(uint8_t r, uint8_t g, uint8_t b)
     float wBlue = b * (255 / _wTempBlue);
     
     // Determine the smallest white value from above.
-    uint8_t wMin = round(min(wRed, min(wGreen, wBlue)));
+    uint8_t wMin = std::round(std::min(wRed, std::min(wGreen, wBlue)));
     
     // Make the color with the smallest white value to be the output white value
     uint8_t wOut;
@@ -39,9 +39,9 @@ RGBWConverter::RGBW RGBWConverter::RGBToRGBW(uint8_t r, uint8_t g, uint8_t b)
     }
     
     // Calculate the output red, green and blue values, taking into account the white color temperature.
-    uint8_t rOut = round(r - wOut * (_wTempRed / 255));
-    uint8_t gOut = round(g - wOut * (_wTempGreen / 255));
-    uint8_t bOut = round(b - wOut * (_wTempBlue / 255));
+    uint8_t rOut = std::round(r - wOut * (_wTempRed / 255));
+    uint8_t gOut = std::round(g - wOut * (_wTempGreen / 255));
+    uint8_t bOut = std::round(b - wOut * (_wTempBlue / 255));
     
     // Apply the blue correction in enabled.
     //This is required on some RGBW NeoPixels which have a little bit of mixed into the blue color.

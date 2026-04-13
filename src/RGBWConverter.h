@@ -5,7 +5,7 @@
 */
 #ifndef RGBWConverter_h
 #define RGBWConverter_h
-#include "Arduino.h"
+#include <cstdint>
 
 class RGBWConverter
 {
