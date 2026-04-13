@@ -2,6 +2,4 @@ version: "1.0.1"
 description: Fork of Arduino-RGBWConverter with added ESP-IDF (idf_component.yaml) component support.
 url: https://github.com/Johboh/Arduino-RGBWConverter
 dependencies:
-  idf: ">=5.1"
-  espressif/arduino-esp32:
-    version: "=3.1.2"
+  idf: ">=5.0"
